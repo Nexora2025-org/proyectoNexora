@@ -8,14 +8,14 @@ Repositorio para Nexora
 2. git add README.md
 3. git commit -m "first commit"
 4. git branch -M main
-5. git remote add origin https://github.com/Ss4nti4go/proyectoNexora.git
+5. git remote add origin https://github.com/Nexora2025-org/proyectoNexora.git
 6. git push -u origin main
 
 # …or push an existing repository from the command line
 
-1. git remote add origin https://github.com/Ss4nti4go/proyectoNexora.git
-2. git branch -M main
-3. git push -u origin main
+1. git remote add origin https://github.com/Nexora2025-org/proyectoNexora.git
+3. git branch -M main
+4. git push -u origin main
 
 # Ver estado de nuestro trabajo desde Visual Studio
 --> git status 
