@@ -326,7 +326,17 @@ body {
     font-weight: 700;
     margin-bottom: 1rem;
 }
+#birthdate {
+       color: rgba(255, 255, 255, 0.6);
 
+}
+#birthdate::webkit-calendar-picker-indicator {
+    color: rgba(185, 32, 32, 0.6);
+}
+#birthdate::webkit-calendar-picker-indicator:hover {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
 .section-subtitle {
     font-size: 1.2rem;
     color: var(--text-secondary);
@@ -685,20 +695,22 @@ body {
 }
 
 .form-group input:focus,
-.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-color);
     background: rgba(255, 255, 255, 0.2);
 }
-
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.2);
+}
 .form-group select {
     cursor: pointer;
 }
 
 .form-group select option {
-    background: var(--bg-dark);
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .footer {
@@ -966,7 +978,23 @@ body {
     }
 }
 
-
+.notification{
+     position: fixed;
+        top: 100px;
+        right: 20px;
+        background: '#10b981';
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        max-width: 400px;
+        animation: slideIn 0.3s ease;
+}
 html {
     scroll-behavior: smooth;
 }
@@ -982,3 +1010,34 @@ html {
         opacity: 1;
     }
 }
+ @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+        }
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .notification-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+.notification-close i {
+            font-size: 1.2rem;
+        }

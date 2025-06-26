@@ -1,12 +1,12 @@
 const formSelect = document.getElementById('interest');
-console.log(formSelect.selectedIndex);
-formSelect.addEventListener('change', () => {ChangeSubmitMessage(100)});
+const dateInput = document.getElementById('birthdate');
 //arrow function
 
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    
+
+
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
@@ -61,11 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-
+ flatpickr("#birthdate", {
+    dateFormat: "Y-m-d"
+  });
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
+    
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
         
@@ -74,13 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
         submitBtn.disabled = true;
         
-        setTimeout(() => {
- 
-            showNotification('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
-            
-       
+        setTimeout(() => {       
             contactForm.reset();
-            
+            showNotification();
    
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
@@ -247,7 +244,68 @@ document.addEventListener('DOMContentLoaded', function() {
         const phoneRegex = /^[\+]?[0-9\s\-$$$$]{8,}$/;
         return phoneRegex.test(phone);
     }
+    
+    dateInput.removeAttribute('readonly');/*
+    dateInput.addEventListener('keydown', (e) => {
+    // Permitir: números, backspace, tab, delete, flechas, barra (/)
+    const allowedKeys = [
+        'Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', '/',
+    ];
+    const isNumber = /^[0-9]$/.test(e.key);
 
+    if (!isNumber && !allowedKeys.includes(e.key)) {
+        e.preventDefault(); // Bloquea letras u otros caracteres
+    }
+    });
+    dateInput.addEventListener('input', () => {
+        const dateValue = dateInput.value;
+          let parts = dateValue.split('/');
+        console.log('Fecha seleccionada:', dateValue);
+        if (dateValue) {
+            if(dateValue) {
+            if (dateValue.length === 2) {
+                if (dateInput.value <= 31) {
+                    dateInput.value = `${dateValue}/`;
+                } else {
+                    showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                     console.log('Fecha inválida2:', dateValue);
+                    dateInput.value = '';
+                }
+            }
+            if (dateValue.length === 5) {
+                parts = dateValue.split('/');
+                if (parseInt(parts[1], 10) <= 12 && parts[1].length === 2) {
+                    dateInput.value = `${dateValue}/`;
+                    
+                } else {
+                    showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                    console.log('Mes inválida:', parts[1].length);
+                    dateInput.value = '';
+                }
+            }
+            if (dateValue.length === 10) {
+                parts = dateValue.split('/');
+                console.log('Partes de la fecha:', parts);
+                if (parts.length === 3 && parts[0].length === 2 && parts[1].length === 2 && parts[2].length === 4) {
+                    const day = parseInt(parts[0], 10);
+                    const month = parseInt(parts[1], 10);
+                    const year = parseInt(parts[2], 10);
+                    if (day > 31 || month > 12 || year < 1900 || year > new Date().getFullYear() || parts[2].length > new Date().getFullYear().length) {
+                        showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                        console.log('Fecha inválida:', dateValue);
+                        dateInput.value = '';
+                    }
+                    
+                }
+               
+            }
+            if(dateValue.length > 10) {
+                showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                dateInput.value = '';
+            }
+        }
+        }
+    });*/
     document.body.classList.add('loading');
 });
 //    <option value="">¿Qué te interesa?</option>
@@ -255,19 +313,6 @@ document.addEventListener('DOMContentLoaded', function() {
 //                            <option value="software">Software de gestión</option>
 //                            <option value="ambos">Ambos servicios</option>
 //                            <option value="info">Solo información</option>
-function ChangeSubmitMessage() {
-    const submitButton = document.getElementById('form-submit');
-    const value = formSelect.options[formSelect.selectedIndex].value;
-    if (value === 'cooperativa') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensaje';
-    } else if (value === 'software') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar Software';
-    } else if (value === 'ambos') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar Ambos';
-    } else if (value === 'info') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar Información';
-    }
-}
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -277,90 +322,5 @@ function scrollToSection(sectionId) {
             behavior: 'smooth'
         });
     }
-}
-
-function showNotification(message, type = 'success') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    /*
-    if(type === 'success') {
-        return 'check-circle';
-    }else if(type === 'info') {
-        return 'info-circle';
-    }else{
-        return 'fa-spinner fa-spin';}
-    */
-    notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> 
-
-            
-            <span>${message}</span>
-        </div>
-        <button class="notification-close" onclick="this.parentElement.remove()">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    // estilos de la notificacion
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#3b82f6'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        max-width: 400px;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    // agregar animaciones styles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .notification-close {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            padding: 0.25rem;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        .notification-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    `;
-    document.head.appendChild(style);
-    
-
-    document.body.appendChild(notification);
- 
-    setTimeout(() => {
-        if (notification.parentElement) {
-            notification.remove();
-        }
-    }, 5000);
 }
 
