@@ -1,0 +1,831 @@
+<<<<<<< HEAD:index.html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora - Tu Hogar, Tu Futuro</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <link rel="icon" href="./assets/img/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-fuscvam">
+                <img src="./assets/img/FUSCVAMicon.png" alt="FUSCVAM icono" class="fuscvam-icon">
+            </div>
+            <div class="nav-logo">
+                <img src="./assets/img/logo.png" class="nav-logo-img" alt="Logo">
+         
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#cooperativa" class="nav-link">Cooperativa</a></li>
+                <li><a href="#software" class="nav-link">Software</a></li>
+                <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li><button class="btn btn-primary">Ingresar</button></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Tu <span class="gradient-text">Hogar Propio</span><br>
+                    Es Posible en Uruguay
+                </h1>
+                <p class="hero-description">
+                    Únete a nuestra cooperativa de vivienda y accede a tu casa propia con nuestro sistema de ahorro y
+                    préstamo.
+                    Además, gestiona todo con nuestro software especializado.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('cooperativa')">
+                        <i class="fas fa-home"></i>
+                        Conocer Cooperativa
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('software')">
+                        <i class="fas fa-laptop"></i>
+                        Ver Software
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Familias con hogar</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Años de experiencia</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Transparencia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-key"></i>
+                    <span>Tu llave al futuro</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Ahorro inteligente</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-users"></i>
+                    <span>Comunidad unida</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cooperativa Section -->
+    <section id="cooperativa" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cooperativa de Vivienda</h2>
+                <p class="section-subtitle">El camino más seguro hacia tu hogar propio</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>Sistema de Ahorro</h3>
+                    <p>Ahorra de forma sistemática con cuotas accesibles y obtén tu vivienda sin necesidad de grandes
+                        capitales iniciales.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Ayuda Mutua</h3>
+                    <p>Trabajamos juntos en la construcción, reduciendo costos y fortaleciendo los lazos comunitarios.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Propiedad Colectiva</h3>
+                    <p>Sistema de propiedad colectiva que garantiza la permanencia y accesibilidad de la vivienda.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Ubicaciones Premium</h3>
+                    <p>Terrenos estratégicamente ubicados en Montevideo y el interior del país con todos los servicios.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section id="software" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Software de Gestión Nexora</h2>
+                <p class="section-subtitle">Tecnología avanzada para administrar tu cooperativa</p>
+            </div>
+            <div class="software-content">
+                <div class="software-features">
+                    <div class="software-feature" data-aos="fade-right">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Gestión de Socios</h3>
+                            <p>Administra información completa de todos los cooperativistas, pagos, y estado de
+                                membresía.</p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-calculator fa-sm"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Control Financiero</h3>
+                            <p>Seguimiento detallado de ingresos, egresos, cuotas y estado financiero en tiempo real.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Reportes Inteligentes</h3>
+                            <p>Genera reportes automáticos para asambleas, auditorías y toma de decisiones estratégicas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="software-demo" data-aos="fade-left">
+                    <div class="demo-screen">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Lo que dicen nuestros cooperativistas</h2>
+                <p class="section-subtitle">Historias reales de familias que lograron su hogar</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Después de 5 años ahorrando, finalmente tenemos nuestra casa. El proceso fue transparente y
+                            el software nos permitía ver todo en tiempo real."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <span>Cooperativista desde 2018</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+
+                        </div>
+                        <p>"La experiencia de ayuda mutua fue increíble. No solo construimos casas, construimos una
+                            comunidad. El software facilitó toda la gestión."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Joaquin Rodríguez</h4>
+                            <span>Cooperativista desde 2019</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Como administrador de la cooperativa, el software de Nexora nos cambió la vida. Todo
+                            automatizado y transparente para todos los socios."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Martínez</h4>
+                            <span>Administradora</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Listo para tu hogar propio?</h2>
+                <p class="section-subtitle">Contáctanos y comienza tu camino hacia la vivienda propia</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item" data-aos="fade-right">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Ubicación</h3>
+                            <p>Av. 18 de Julio 1234<br>Montevideo, Uruguay</p>
+                        </div>
+                    </div>
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Teléfono</h3>
+                            <p>+598 93 395 215<br>+598 99 999 999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>nexorahlp@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" data-aos="fade-left" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Primer nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="surname" name="surname" placeholder="Primer apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="CI" name="CI" placeholder="Tu C.I" required pattern="^\d{7,8}$"
+                            maxlength="8">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="birthdate" name="birthdate" spellcheck="true" placeholder="Fecha de nac."
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Tu teléfono">
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Cuéntanos más sobre tu interés..."
+                            rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="form-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Solicitar ingreso
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <span>CoopViva</span>
+                    </div>
+                    <p>Construyendo hogares, fortaleciendo comunidades. Tu cooperativa de vivienda de confianza en
+                        Uruguay.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#cooperativa">Cooperativa de Vivienda</a></li>
+                        <li><a href="#software">Software CoopTech</a></li>
+                        <li><a href="#">Asesoramiento Legal</a></li>
+                        <li><a href="#">Gestión de Proyectos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Montevideo, Uruguay</p>
+                        <p><i class="fas fa-phone"></i> +598 93 395215</p>
+                        <p><i class="fas fa-envelope"></i> nexorahlp@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nexora Uruguay. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
+=======
+<?php  
+session_start(); 
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora - Tu Hogar, Tu Futuro</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="./assets/img/logo.png" class="nav-logo-img" alt="Logo">
+                <span>Nexora</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#cooperativa" class="nav-link">Cooperativa</a></li>
+                <li><a href="#software" class="nav-link">Software</a></li>
+                <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li><button class="btn btn-primary">Ingresar</button></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Tu <span class="gradient-text">Hogar Propio</span><br>
+                    Es Posible en Uruguay
+                </h1>
+                
+                <p class="hero-description">
+                    Únete a nuestra cooperativa de vivienda y accede a tu casa propia con nuestro sistema de ahorro y préstamo. 
+                    Además, gestiona todo con nuestro software especializado.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('cooperativa')">
+                        <i class="fas fa-home"></i>
+                        Conocer Cooperativa
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('software')">
+                        <i class="fas fa-laptop"></i>
+                        Ver Software
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Familias con hogar</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Años de experiencia</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Transparencia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-key"></i>
+                    <span>Tu llave al futuro</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Ahorro inteligente</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-users"></i>
+                    <span>Comunidad unida</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cooperativa Section -->
+    <section id="cooperativa" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cooperativa de Vivienda</h2>
+                <p class="section-subtitle">El camino más seguro hacia tu hogar propio</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>Sistema de Ahorro</h3>
+                    <p>Ahorra de forma sistemática con cuotas accesibles y obtén tu vivienda sin necesidad de grandes capitales iniciales.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Ayuda Mutua</h3>
+                    <p>Trabajamos juntos en la construcción, reduciendo costos y fortaleciendo los lazos comunitarios.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Propiedad Colectiva</h3>
+                    <p>Sistema de propiedad colectiva que garantiza la permanencia y accesibilidad de la vivienda.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Ubicaciones Premium</h3>
+                    <p>Terrenos estratégicamente ubicados en Montevideo y el interior del país con todos los servicios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section id="software" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Software de Gestión Nexora</h2>
+                <p class="section-subtitle">Tecnología avanzada para administrar tu cooperativa</p>
+            </div>
+            <div class="software-content">
+                <div class="software-features">
+                    <div class="software-feature" data-aos="fade-right">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Gestión de Socios</h3>
+                            <p>Administra información completa de todos los cooperativistas, pagos, y estado de membresía.</p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-calculator fa-sm"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Control Financiero</h3>
+                            <p>Seguimiento detallado de ingresos, egresos, cuotas y estado financiero en tiempo real.</p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Reportes Inteligentes</h3>
+                            <p>Genera reportes automáticos para asambleas, auditorías y toma de decisiones estratégicas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="software-demo" data-aos="fade-left">
+                    <div class="demo-screen">
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Lo que dicen nuestros cooperativistas</h2>
+                <p class="section-subtitle">Historias reales de familias que lograron su hogar</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Después de 5 años ahorrando, finalmente tenemos nuestra casa. El proceso fue transparente y el software nos permitía ver todo en tiempo real."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <span>Cooperativista desde 2018</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                           
+                        </div>
+                        <p>"La experiencia de ayuda mutua fue increíble. No solo construimos casas, construimos una comunidad. El software facilitó toda la gestión."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Joaquin Rodríguez</h4>
+                            <span>Cooperativista desde 2019</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Como administrador de la cooperativa, el software de Nexora nos cambió la vida. Todo automatizado y transparente para todos los socios."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Martínez</h4>
+                            <span>Administradora</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Listo para tu hogar propio?</h2>
+                <p class="section-subtitle">Contáctanos y comienza tu camino hacia la vivienda propia</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item" data-aos="fade-right">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Ubicación</h3>
+                            <p>Av. 18 de Julio 1234<br>Montevideo, Uruguay</p>
+                        </div>
+                    </div>
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Teléfono</h3>
+                            <p>+598 93 395 215<br>+598 99 999 999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>nexorahlp@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" data-aos="fade-left" id="contact-form" name="contact-form" method="post" action="./back/sumbitPetition.php">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Primer nombre" required>
+                    </div>
+                     <div class="form-group">
+                        <input type="text" id="surname" name="surname" placeholder="Primer apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="birthdate" name="birthdate" spellcheck="true" placeholder="Fecha de nac."  required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Tu teléfono">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="income" name="income" placeholder="Tu ingreso mensual" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="CI" name="CI" placeholder="Tu Cédula de Identidad" required >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="address" name="address" placeholder="Tu dirección" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="occupation" name="occupation" placeholder="Tu ocupación" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="lawful_resident" name="lawful_resident" required>
+                            <option value="" disabled selected>¿Eres residente legal?</option>
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="marital_status" title="marital_status" name="marital_status" required>
+                            <option value="" disabled selected>Estado civil</option>
+                            <option value="soltero">Soltero</option>
+                            <option value="casado">Casado</option>
+                            <option value="divorciado">Divorciado</option>
+                            <option value="viudo">Viudo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Cuéntanos más sobre tu interés..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="form-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Solicitar ingreso
+                    </button>
+                </form>
+                <?php
+                
+                if (isset($_SESSION['success'])) {
+                    echo (`
+                     <div class="notification-content">
+                <i class="fas fa-check-circle"></i> 
+
+            
+                <span> Solicitud enviada con exito </span>
+                </div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+                `);
+                    
+                }
+                if (isset($_SESSION['error'])) {
+                    echo ( '   <div class="notification-content">
+            <i class="fas fa-info-circle"></i> 
+
+            
+            <span> '.$_SESSION['error'].' </span>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i>
+        </button>');
+                  
+                }
+                ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <span>CoopViva</span>
+                    </div>
+                    <p>Construyendo hogares, fortaleciendo comunidades. Tu cooperativa de vivienda de confianza en Uruguay.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#cooperativa">Cooperativa de Vivienda</a></li>
+                        <li><a href="#software">Software CoopTech</a></li>
+                        <li><a href="#">Asesoramiento Legal</a></li>
+                        <li><a href="#">Gestión de Proyectos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Montevideo, Uruguay</p>
+                        <p><i class="fas fa-phone"></i> +598 93 395215</p>
+                        <p><i class="fas fa-envelope"></i> nexorahlp@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nexora Uruguay. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+>>>>>>> 0279262cf1067f9eeb085c3ebb764d49677915af:index.php
