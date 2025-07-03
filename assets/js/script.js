@@ -1,12 +1,13 @@
 const formSelect = document.getElementById('interest');
-console.log(formSelect.selectedIndex);
-formSelect.addEventListener('change', () => {ChangeSubmitMessage(100)});
+const dateInput = document.getElementById('birthdate');
+const ciInput = document.getElementById('CI');
 //arrow function
 
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    
+
+
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
+            document.getElementById('logo').classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
@@ -41,7 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
+    ciInput.addEventListener('input', () => {
+    let value = ciInput.value.replace(/\D/g, '').slice(0, 8);
+    if (value.length === 8) {
+        ciInput.value = value.slice(0, 7) + '-' + value[7];
+    } else {
+        ciInput.value = value;
+    }
+    });
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -61,14 +70,20 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-
+ flatpickr("#birthdate", {
+    dateFormat: "d/m/Y"
+  });
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
-        
+        //validamos la CI 
+        if (!/^\d{8}$/.test(data.CI)) {
+            showNotification('Por favor, ingresa una C.I. válida.', 'error');
+            return;
+        }
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
@@ -76,12 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         setTimeout(() => {
  
-            showNotification('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
-            
-       
+            showNotification('!Solicitud enviada correctamente! Te contactaremos pronto.', 'success');
             contactForm.reset();
-            
-   
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             
@@ -96,42 +107,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const stats = document.querySelectorAll('.stat-number');
-    const animateCounter = (element, target) => {
-        let current = 0;
-        const increment = target / 100;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            
-            if (target === 100) {
-                element.textContent = Math.floor(current) + '%';
-            } else {
-                element.textContent = Math.floor(current) + (target >= 500 ? '+' : '');
-            }
-        }, 20);
-    };
+   const animateCounter = (element, target) => {
+    let current = 0;
+    const step = target / 100;
 
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const statNumber = entry.target;
-                const text = statNumber.textContent;
-                let target = parseInt(text.replace(/\D/g, ''));
-                
-                if (text.includes('%')) {
-                    target = 100;
-                } else if (text.includes('+')) {
-                    target = parseInt(text.replace('+', ''));
-                }
-                
-                animateCounter(statNumber, target);
-                statsObserver.unobserve(statNumber);
-            }
-        });
-    }, { threshold: 0.5 });
+    const interval = setInterval(() => {
+        current += step;
+
+        if (current >= target) {
+            current = target;
+            clearInterval(interval);
+        }
+
+        if (target === 100) {
+            element.textContent = Math.floor(current) + '%';
+        } else {
+            const suffix = target >= 500 ? '+' : '';
+            element.textContent = Math.floor(current) + suffix;
+        }
+    }, 20);
+};
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const el = entry.target;
+        const text = el.textContent;
+        let number = parseInt(text);
+
+        if (text.includes('%')) number = 100;
+        if (text.includes('+')) number = parseInt(text.replace('+', ''));
+
+        animateCounter(el, number);
+        statsObserver.unobserve(el);
+    });
+});
 
     stats.forEach(stat => {
         statsObserver.observe(stat);
@@ -181,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroHeight = hero.offsetHeight;
         
         if (scrolled < heroHeight) {
-            const rate = scrolled * -0.5;
+            const rate = scrolled * -1;
             hero.style.transform = `translateY(${rate}px)`;
         }
     });
@@ -247,7 +258,66 @@ document.addEventListener('DOMContentLoaded', function() {
         const phoneRegex = /^[\+]?[0-9\s\-$$$$]{8,}$/;
         return phoneRegex.test(phone);
     }
+    dateInput.removeAttribute('readonly');
+    dateInput.addEventListener('keydown', (e) => {
+    const allowedKeys = [
+        'Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', '/',
+    ];
+    const isNumber = /^[0-9]$/.test(e.key);
 
+    if (!isNumber && !allowedKeys.includes(e.key)) {
+        e.preventDefault();
+    }
+    });
+    dateInput.addEventListener('input', () => {
+        const dateValue = dateInput.value;
+          let parts = dateValue.split('/');
+        console.log('Fecha seleccionada:', dateValue);
+        if (dateValue) {
+            if(dateValue) {
+            if (dateValue.length === 2) {
+                if (dateInput.value <= 31) {
+                    dateInput.value = `${dateValue}/`;
+                } else {
+                    showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                     console.log('Fecha inválida2:', dateValue);
+                    dateInput.value = '';
+                }
+            }
+            if (dateValue.length === 5) {
+                parts = dateValue.split('/');
+                if (parseInt(parts[1], 10) <= 12 && parts[1].length === 2) {
+                    dateInput.value = `${dateValue}/`;
+                    
+                } else {
+                    showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                    console.log('Mes inválida:', parts[1].length);
+                    dateInput.value = '';
+                }
+            }
+            if (dateValue.length === 10) {
+                parts = dateValue.split('/');
+                console.log('Partes de la fecha:', parts);
+                if (parts.length === 3 && parts[0].length === 2 && parts[1].length === 2 && parts[2].length === 4) {
+                    const day = parseInt(parts[0], 10);
+                    const month = parseInt(parts[1], 10);
+                    const year = parseInt(parts[2], 10);
+                    if (day > 31 || month > 12 || year < 1900 || year > new Date().getFullYear() || parts[2].length > new Date().getFullYear().length) {
+                        showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                        console.log('Fecha inválida:', dateValue);
+                        dateInput.value = '';
+                    }
+                    
+                }
+               
+            }
+            if(dateValue.length > 10) {
+                showNotification('Fecha inválida. Por favor, verifica el formato.', 'error');
+                dateInput.value = '';
+            }
+        }
+        }
+    });
     document.body.classList.add('loading');
 });
 //    <option value="">¿Qué te interesa?</option>
@@ -255,19 +325,6 @@ document.addEventListener('DOMContentLoaded', function() {
 //                            <option value="software">Software de gestión</option>
 //                            <option value="ambos">Ambos servicios</option>
 //                            <option value="info">Solo información</option>
-function ChangeSubmitMessage() {
-    const submitButton = document.getElementById('form-submit');
-    const value = formSelect.options[formSelect.selectedIndex].value;
-    if (value === 'cooperativa') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensaje';
-    } else if (value === 'software') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar Software';
-    } else if (value === 'ambos') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar Ambos';
-    } else if (value === 'info') {
-        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Solicitar Información';
-    }
-}
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {

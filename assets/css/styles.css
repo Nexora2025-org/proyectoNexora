@@ -45,7 +45,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgb(255, 255, 255);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
@@ -53,7 +53,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.904);
     box-shadow: var(--shadow-md);
 }
 
@@ -71,7 +71,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--primary-color);
 }
@@ -94,7 +94,11 @@ body {
     transition: color 0.3s ease;
     position: relative;
 }
-
+.nav-logo img {
+    width: 150px;
+    height: 100px;
+ 
+}
 .nav-link:hover {
     color: var(--primary-color);
 }
@@ -733,7 +737,29 @@ body {
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
+.nav-fuscvam {
+    display: flex;
+    align-items: center;
+    margin-right: 16px; 
+}
 
+.fuscvam-icon {
+    height: 38px;      
+    width: auto;
+    border-radius: 8px; 
+    background: #fff; 
+    padding: 2px;     
+    transition: transform 0.2s;
+}
+.fuscvam-icon .scrolled {
+   background: rgba(255, 255, 255, 0.678);
+    box-shadow: var(--shadow-md);
+}
+
+.fuscvam-icon:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
 .footer-section h3 {
     font-size: 1.2rem;
     font-weight: 600;
