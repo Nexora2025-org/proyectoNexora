@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Covinova</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../../../assets/img/logoCooperativa.png" alt="Logo" class="sidebar-logo">
+                <h3>Tu Perfil</h3>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Gestión de Socios</a></li>
+                <li><a href="#"><i class="fas fa-dollar-sign"></i> Gestión Financiera</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Jornadas de Trabajo</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Asignación de Viviendas</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+                <li><a href="#"><i class="fas fa-bullhorn"></i> Comunicaciones</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user-circle"></i> Perfil</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </nav>
+
+
+        <main class="main-content">
+            <header class="top-header">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <a href="./profile.html">
+                        <span id="userName">Administrador</span>
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+
+
+                <div class="profile-container">
+                   
+                    <div>
+                        <h2>Información de Usuario</h2>
+                        <div class="user-info">
+                            <div class="user-details">
+                                <p class="user-ci"><strong>CI:</strong> </p>
+                                <p class="user-name"><strong>Nombre:</strong> </p>
+                                <p class="user-email"><strong>Correo:</strong> </p>
+                                <p class="user-phone"><strong>Telefono:</strong> </p>
+                                <p class="user-address"><strong>Direccion:</strong> </p>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="user-actions" >
+                            <button class="edit-button actBut" id="editButton">Editar</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="edit-actions">
+                    <h2>Editar Información</h2>
+                    <label for="ci"> CI:</label>
+                    <input type="text" class="edit-input" name="ci">
+                    <label for="name"> Nombre:</label>
+                    <input type="text" class="edit-input" name="name">
+                    <label for="email"> Correo:</label>
+                    <input type="text" class="edit-input" name="email">
+                    <label for="phone"> Telefono:</label>
+                    <input type="text" class="edit-input" name="phone">
+                    <label for="address"> Direccion:</label>
+                    <input type="text" class="edit-input" name="address">
+                    <button class="save-button actBut">Guardar</button>
+                    <button class="cancel-button actBut">Cancelar</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
