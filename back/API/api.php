@@ -55,7 +55,7 @@ switch ($method) {
         $result = $usuarioObj->updateUsuario($data);
 
         if ($result) {
-            $updatedUser = $usuarioObj->getUserByID($data['usr_ci']);
+            $updatedUser = $usuarioObj->getUserByID($data['CI']);
             echo json_encode([
                 'success' => true,
                 'user' => $updatedUser

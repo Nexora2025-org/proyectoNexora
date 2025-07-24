@@ -1,17 +1,21 @@
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  if (!sessionStorage.getItem("userLoggedIn")) {
-    window.location.href = "./dashboard.html"
+document.addEventListener("DOMContentLoaded", () => {
+  let user = JSON.parse(sessionStorage.getItem("user"))
+  let userData = [];
+  try {
+   userData = [user.CI, user.nombre, user.email, user.telefono, user.direccion]
+} catch (error) {
+  window.location.href = "../login.html"
+}
+  if (!userData) {
+    window.location.href = "../login.html"
     return
   }
 
-
-  const user = JSON.parse(sessionStorage.getItem("user"))
-  console.log(user);
-  const userName = sessionStorage.getItem("userCI")
-  console.log(userName);
-  document.getElementById("userName").textContent = userName
+ 
+  user = JSON.parse(sessionStorage.getItem("user"))
+  document.getElementById("userName").textContent = user.nombre
 
 
   loadDashboardStats()

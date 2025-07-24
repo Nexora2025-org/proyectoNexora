@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil | Covinova</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/profile-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -34,7 +35,6 @@
             </div>
         </nav>
 
-
         <main class="main-content">
             <header class="top-header">
                 <button class="menu-toggle" onclick="toggleSidebar()">
@@ -42,8 +42,8 @@
                 </button>
                 <h1>Dashboard</h1>
                 <div class="user-info">
-                    <a href="./profile.html">
-                        <span id="userName">Administrador</span>
+                    <a href="./profile.html" class="usr-link">
+                        <span id="userName"></span>
                         <i class="fas fa-user-circle"></i>
                     </a>
                 </div>
@@ -51,46 +51,73 @@
 
             <div class="dashboard-content">
 
+                <h2 class="edition-status"></h2>
 
                 <div class="profile-container">
-                   
+
                     <div>
                         <h2>Información de Usuario</h2>
                         <div class="user-info">
                             <div class="user-details">
-                                <p class="user-ci"><strong>CI:</strong> </p>
-                                <p class="user-name"><strong>Nombre:</strong> </p>
-                                <p class="user-email"><strong>Correo:</strong> </p>
-                                <p class="user-phone"><strong>Telefono:</strong> </p>
-                                <p class="user-address"><strong>Direccion:</strong> </p>
-
+                                <div>
+                                <strong>CI:</strong>
+                                <p class="user-ci"> </p>
+                                <strong>Nombre:</strong>
+                                <p class="user-name"> </p>
+                                <strong>Apellido:</strong>
+                                <p class="user-surname"> </p>
+                                <strong>Correo:</strong>
+                                <p class="user-email"> </p>
+                                <strong>Telefono:</strong>
+                                <p class="user-phone"> </p>
+                                <strong>Direccion:</strong>
+                                <p class="user-address"> </p>
+                                     </div>
+                                 <div class="user-information">
+                                <strong>Rol:</strong>
+                                <p class="user-role"> </p>
+                                <strong>Estado pago:</strong>
+                                <p class="user-payment-status"> </p>
                             </div>
-
-
+                            </div>
+                           
                         </div>
 
-                        <div class="user-actions" >
-                            <button class="edit-button actBut" id="editButton">Editar</button>
+                        <div class="user-actions">
+                            <button class="edit-button actBut" id="editButton">
+                                <i class="fas fa-edit"></i>
+                                Editar
+                            </button>
+                            <div class="spinner" id="loadingSpinner"></div>
                         </div>
-
                     </div>
                 </div>
-
-
+                <div id="overlay"></div>
                 <div class="edit-actions">
-                    <h2>Editar Información</h2>
-                    <label for="ci"> CI:</label>
+                    <h2><i class="fas fa-user-edit"></i> Editar Información</h2>
+                    <label for="ci"><i class="fas fa-id-card"></i> CI:</label>
                     <input type="text" class="edit-input" name="ci">
-                    <label for="name"> Nombre:</label>
+                    <label for="name"><i class="fas fa-user"></i> Nombre:</label>
                     <input type="text" class="edit-input" name="name">
-                    <label for="email"> Correo:</label>
+                    <label for="surname"><i class="fas fa-user"></i> Apellido:</label>
+                    <input type="text" class="edit-input" name="surname">
+                    <label for="email"><i class="fas fa-envelope"></i> Correo:</label>
                     <input type="text" class="edit-input" name="email">
-                    <label for="phone"> Telefono:</label>
+                    <label for="phone"><i class="fas fa-phone"></i> Telefono:</label>
                     <input type="text" class="edit-input" name="phone">
-                    <label for="address"> Direccion:</label>
+                    <label for="address"><i class="fas fa-map-marker-alt"></i> Direccion:</label>
                     <input type="text" class="edit-input" name="address">
-                    <button class="save-button actBut">Guardar</button>
-                    <button class="cancel-button actBut">Cancelar</button>
+                    <div class="edit-buttons">
+                        <button class="save-button actBut">
+                            <i class="fas fa-save"></i>
+                            Guardar
+                        </button>
+                        <button class="cancel-button actBut">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </main>

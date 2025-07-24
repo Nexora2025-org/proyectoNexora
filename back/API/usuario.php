@@ -27,7 +27,7 @@ class Usuario {
         return false; // SI hay un error devolver false
     }
 
-    $stmt->bind_param("ssssi", $data['nombre'], $data['apellido'], $data['telefono'], $data['direccion'], $data['ci']);
+    $stmt->bind_param("ssssi", $data['nombre'], $data['apellido'], $data['telefono'], $data['direccion'], $data['CI']);
 
     $result = $stmt->execute();
     $stmt->close();

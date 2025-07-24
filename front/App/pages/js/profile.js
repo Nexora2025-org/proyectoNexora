@@ -1,29 +1,60 @@
-const user = JSON.parse(sessionStorage.getItem("user"))
-const userData = [user.CI, user.nombre, user.email, user.telefono, user.direccion]
-document.addEventListener("DOMContentLoaded", () => {
+const ciText = document.querySelector(".user-ci");
+const nameText = document.querySelector(".user-name");
+const surnameText = document.querySelector(".user-surname");
+const emailText = document.querySelector(".user-email");
+const editionstatus = document.querySelector(".edition-status");
+const phoneText = document.querySelector(".user-phone");
 
-  if (!sessionStorage.getItem("userLoggedIn")) {
-    window.location.href = "login.html"
-    return
+const addressText = document.querySelector(".user-address");
+const DataInputs = document.querySelectorAll(".edit-input");
+const shadowOverlay =  document.getElementById("overlay")
+const paymentStatus = document.querySelector(".user-payment-status")
+
+//Instancias del documento para estilar
+const spinner = document.getElementById("loadingSpinner");
+const userRol = document.querySelector(".user-role");
+spinner.style.display = "none";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(sessionStorage.getItem("user"))
+  let userData = [];
+  try {
+    userData = [user.CI, user.nombre, user.apellido, user.email, user.telefono, user.direccion]
+  } catch (error) {
+    window.location.href = "../login.html"
   }
 
+  if (!user) {
+    window.location.href = "../login.html"
+    return
+  }
+  console.log(user);
+   document.getElementById("userName").textContent = user.nombre
   const editButton = document.getElementById("editButton");
   const editMenu = document.querySelector(".edit-actions");
   const closeMenu = document.querySelector(".cancel-button");
   const saveInfo = document.querySelector(".save-button");
 
   console.log(user);
-  const ciText = document.querySelector(".user-ci");
+
   ciText.textContent = user.CI;
-  const nameText = document.querySelector(".user-name");
+  userRol.textContent = user.rol;
   nameText.textContent = user.nombre;
-  const emailText = document.querySelector(".user-email");
+  
+  surnameText.textContent = user.apellido;
   emailText.textContent = user.email;
-  const phoneText = document.querySelector(".user-phone");
   phoneText.textContent = user.telefono;
-  const addressText = document.querySelector(".user-address");
+  paymentStatus.textContent = user.estado_pago_inicial
+  if(user.estado_pago_inicial === "Pagado"){
+    paymentStatus.style.color = "green";
+  }
+  if(user.estado_pago_inicial === "Pendiente"){
+    paymentStatus.style.color = "orange";
+  }else{
+    paymentStatus.style.color = "red";
+  }
   addressText.textContent = user.direccion;
-  const DataInputs = document.querySelectorAll(".edit-input");
+  
 
 
   DataInputs.forEach((input, index) => {
@@ -32,23 +63,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   editButton.addEventListener("click", () => {
     editMenu.classList.add("show-edit-actions");
+    shadowOverlay.style.display = "block";
   });
 
   closeMenu.addEventListener("click", () => {
     editMenu.classList.remove("show-edit-actions");
+      shadowOverlay.style.display = "none";
   });
   saveInfo.addEventListener("click", saveChangedInfo);
 })
-
 async function saveChangedInfo() {
   const DataInputs = document.querySelectorAll(".edit-input");
+  spinner.style.display = "block";
 
   const updatedUser = {
-    ci: DataInputs[0].value,
+    CI: DataInputs[0].value,
     nombre: DataInputs[1].value,
-    email: DataInputs[2].value,
-    telefono: DataInputs[3].value,
-    direccion: DataInputs[4].value
+    apellido: DataInputs[2].value,
+    email: DataInputs[3].value,
+    telefono: DataInputs[4].value,
+    direccion: DataInputs[5].value
   };
 
   try {
@@ -60,30 +94,44 @@ async function saveChangedInfo() {
       body: JSON.stringify(updatedUser)
     });
 
+    if (!response.ok) {
+      throw new Error("Error en la solicitud HTTP");
+    }
+
     const result = await response.json();
-    console.log(result);
+
     if (result.success) {
-    
+      // Actualizar sessionStorage
       sessionStorage.setItem("user", JSON.stringify(result.user));
 
-      // Actualizar elementos en pantalla
-      document.querySelector(".user-ci").textContent = result.user.CI;
-      document.querySelector(".user-name").textContent = result.user.Nombre;
-      document.querySelector(".user-email").textContent = result.user.email;
-      document.querySelector(".user-phone").textContent = result.user.Telefono;
-      document.querySelector(".user-address").textContent = result.user.Direccion;
-
+      // Actualizar el DOM
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      ciText.textContent = user.CI;
+      nameText.textContent = user.nombre;
+      surnameText.textContent = user.apellido;
+      emailText.textContent = user.email;
+      phoneText.textContent = user.telefono;
+      addressText.textContent = user.direccion;
+         document.getElementById("userName").textContent = user.nombre
       // Cerrar el modal
       const editMenu = document.querySelector(".edit-actions");
       editMenu.classList.remove("show-edit-actions");
-      editMenu.classList.add("hidden");
-
-      console.log("✅ Información actualizada con éxito.");
+      editionstatus.style.color = "green";
+      editionstatus.textContent = "Información actualizada con exito";
     } else {
-      console.error("❌ No se pudo actualizar el usuario.");
+      editionstatus.style.color = "red";
+      editionstatus.textContent = "Error al actualizar la información";
     }
-
+    setTimeout(() => {
+      editionstatus.textContent = "";
+      spinner.style.display = "none";
+    }, 3000);
+       shadowOverlay.style.display = "none";
   } catch (error) {
+     editionstatus.style.color = "red";
+      editionstatus.textContent = "Error al actualizar la información";
+      
     console.error("❌ Error en la solicitud:", error);
-  }
+  } 
+  
 }
