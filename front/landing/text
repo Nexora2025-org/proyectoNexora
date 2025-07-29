@@ -1,0 +1,393 @@
+<?php  
+session_start(); 
+require_once 'translate.php';
+
+// Al cambiar el selector de idioma:
+if (isset($_GET['lang'])) {
+    setLanguage($_GET['lang']);
+    header('Location: index.php');
+    exit;
+}
+
+$lang = getLanguage();
+?>
+<!DOCTYPE html>
+<html lang="<?= $lang ?>">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covinova - <?= __('hero_title_plain') ?></title>
+    <link rel="stylesheet" href="./assets/css/landingstyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="icon" href="./assets/img/logo.png" type="image/x-icon" class="favicon">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-fuscvam">
+                <img src="./assets/img/FUSCVAMicon.png" alt="FUSCVAM icono" class="fuscvam-icon">
+                <img src="./assets/img/logoCooperativa.png" alt="Cooperativa icono" class="cooperativa-icon">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio"><?= __('nav_inicio') ?></a></li>
+                <li><a href="#cooperativa"><?= __('nav_coop') ?></a></li>
+                <li><a href="#software"><?= __('nav_software') ?></a></li>
+                <li><a href="#testimonios"><?= __('nav_testimonios') ?></a></li>
+                <li><a href="#contact"><?= __('nav_solicitud') ?></a></li>
+                <li>
+                    <div class="language-label"><i class="fas fa-globe"></i> <?= __('nav_idioma') ?></div>
+                    <form method="get" style="display:inline;">
+                        <select name="lang" onchange="this.form.submit()">
+                            <option value="es" <?= $lang==='es'?'selected':'' ?>>Español</option>
+                            <option value="en" <?= $lang==='en'?'selected':'' ?>>English</option>
+                        </select>
+                    </form>
+                </li>
+                <li><a href="../App/login.html"><?= __('nav_login') ?></a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title"><?= __('hero_title') ?></h1>
+
+                <p class="hero-description"><?= __('hero_desc') ?></p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('cooperativa')">
+                        <i class="fas fa-home"></i>
+                        <?= __('btn_coop') ?>
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('software')">
+                        <i class="fas fa-laptop"></i>
+                        <?= __('btn_soft') ?>
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label"><?= __('stat_familias') ?></span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label"><?= __('stat_anos') ?></span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label"><?= __('stat_transp') ?></span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-key"></i>
+                    <span><?= __('card1') ?></span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-chart-line"></i>
+                    <span><?= __('card2') ?></span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-users"></i>
+                    <span><?= __('card3') ?></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Información Cooperativa -->
+    <section id="cooperativa" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><?= __('coop_title') ?></h2>
+                <p class="section-subtitle"><?= __('coop_subtitle') ?></p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3><?= __('feat_ahorro_tit') ?></h3>
+                    <p><?= __('feat_ahorro') ?></p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3><?= __('feat_mutua_tit') ?></h3>
+                    <p><?= __('feat_mutua') ?></p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3><?= __('feat_colect_tit') ?></h3>
+                    <p><?= __('feat_colect') ?></p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3><?= __('feat_ubi_tit') ?></h3>
+                    <p><?= __('feat_ubi') ?></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Software -->
+    <section id="software" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><?= __('soft_title') ?></h2>
+                <p class="section-subtitle"><?= __('soft_subtitle') ?></p>
+            </div>
+            <div class="software-content">
+                <div class="software-features">
+                    <div class="software-feature" data-aos="fade-right">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3><?= __('sf_socios_tit') ?></h3>
+                            <p><?= __('sf_socios') ?></p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-calculator fa-sm"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3><?= __('sf_financ_tit') ?></h3>
+                            <p><?= __('sf_financ') ?></p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3><?= __('sf_reportes_tit') ?></h3>
+                            <p><?= __('sf_reportes') ?></p>
+                        </div>
+                    </div>
+                    <div class="software-feature" data-aos="fade-right" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3><?= __('sf_nube_tit') ?></h3>
+                            <p><?= __('sf_nube') ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Testimonios -->
+    <section id="testimonios" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><?= __('test_tit') ?></h2>
+                <p class="section-subtitle"><?= __('test_sub') ?></p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p><?= __('test1_txt') ?></p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div class="author-info">
+                            <h4><?= __('test1_aut') ?></h4>
+                            <span><?= __('test1_rol') ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p><?= __('test2_txt') ?></p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div class="author-info">
+                            <h4><?= __('test2_aut') ?></h4>
+                            <span><?= __('test2_rol') ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p><?= __('test3_txt') ?></p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div class="author-info">
+                            <h4><?= __('test3_aut') ?></h4>
+                            <span><?= __('test3_rol') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contact" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><?= __('contact_title') ?></h2>
+                <p class="section-subtitle"><?= __('contact_sub') ?></p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-content">
+                    <section id="requirements" class="section" data-aos="fade-left">
+                        <div class="container">
+                            <div class="section-header">
+                                <h2 class="section-title"><?= __('reqs_title') ?></h2>
+                                <p class="section-subtitle"><?= __('reqs_sub') ?></p>
+                            </div>
+                            <ul class="requirements-list">
+                                <?php for($i=1;$i<=5;$i++): ?>
+                                    <li><?= __('req'.$i) ?></li>
+                                <?php endfor; ?>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <form class="contact-form" method="POST">
+                    <div class="form-group"><input name="name" placeholder="<?= __('ph_name') ?>" required></div>
+                    <div class="form-group"><input name="surname" placeholder="<?= __('ph_surname') ?>" required></div>
+                    <div class="form-group"><input type="email" name="email" placeholder="<?= __('ph_email') ?>" required></div>
+                    <div class="form-group"><input type="date" name="birthdate" placeholder="<?= __('ph_birthdate') ?>" required></div>
+                    <div class="form-group"><input name="phone" placeholder="<?= __('ph_phone') ?>" required></div>
+                    <div class="form-group"><input name="CI" placeholder="<?= __('ph_ci') ?>" required></div>
+                    <button type="submit" class="btn btn-primary btn-full"><?= __('btn_submit') ?></button>
+                </form>
+                <?php if(isset($_SESSION['error'])): ?>
+                    <p class="error"><?= __('error_msg') ?></p>
+                    <?php unset($_SESSION['error']); endif; ?>
+                <?php if(isset($_SESSION['success'])): ?>
+                    <p class="success"><?= __('success_msg') ?></p>
+                    <?php unset($_SESSION['success']); endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><?= __('about_title') ?></h2>
+                <p class="section-subtitle"><?= __('about_sub') ?></p>
+            </div>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right" data-aos-delay="200">
+                    <h3><?= __('about_h3') ?></h3>
+                    <p><?= __('about_p1') ?></p>
+                    <p><?= __('about_p2') ?></p>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item" data-aos="fade-right">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details">
+                            <h3><?= __('addr_title') ?></h3>
+                            <p><?= __('addr_txt') ?></p>
+                        </div>
+                    </div>
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-details">
+                            <h3><?= __('phone_title') ?></h3>
+                            <p><?= __('phone_txt') ?></p>
+                        </div>
+                    </div>
+                    <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details">
+                            <h3><?= __('email_title') ?></h3>
+                            <p><?= __('email_txt') ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo"><i class="fas fa-home"></i> <span>Covinova</span></div>
+                    <p><?= __('footer_about') ?></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3><?= __('footer_info') ?></h3>
+                    <ul>
+                        <li><a href="#about"><?= __('footer_sobrenos') ?></a></li>
+                        <li><a href="#"><?= __('footer_faq') ?></a></li>
+                        <li><a href="#"><?= __('footer_tyc') ?></a></li>
+                        <li><a href="#"><?= __('footer_priv') ?></a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><?= __('footer_contact') ?></h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> <?= __('addr_txt') ?></p>
+                        <p><i class="fas fa-phone"></i> <?= __('phone_txt') ?></p>
+                        <p><i class="fas fa-envelope"></i> <?= __('email_txt') ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><?= __('footer_copy') ?></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/appoinments.js"></script>
+</body>
+</html>

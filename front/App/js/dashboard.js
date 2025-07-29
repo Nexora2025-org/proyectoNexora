@@ -84,14 +84,8 @@ function toggleSidebar() {
   sidebar.classList.toggle("active")
 }
 
-function logout() {
-  if (confirm("¿Está seguro que desea cerrar sesión?")) {
-    sessionStorage.clear()
-    window.location.href = "../login.html"
-  }
-}
 
-// Close sidebar when clicking outside on mobile
+
 document.addEventListener("click", (e) => {
   const sidebar = document.getElementById("sidebar")
   const menuToggle = document.querySelector(".menu-toggle")

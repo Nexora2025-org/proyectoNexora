@@ -15,7 +15,7 @@
 
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="../../../assets/img/logoCooperativa.png" alt="Logo" class="sidebar-logo">
+                <img src="../../App/assets/logoCooperativa.png" alt="Logo" class="sidebar-logo">
                 <h3>Tu Perfil</h3>
             </div>
 
@@ -44,86 +44,120 @@
                 <div class="user-info">
                     <a href="./profile.html" class="usr-link">
                         <span id="userName"></span>
-                        <i class="fas fa-user-circle"></i>
+                        <img src="../../../back/user_images/default/default-avatar.svg" class="profilePic" alt=" Foto de perfil">
                     </a>
                 </div>
             </header>
 
             <div class="dashboard-content">
 
-                <h2 class="edition-status"></h2>
 
-                <div class="profile-container">
-
-                    <div>
-                        <h2>Información de Usuario</h2>
-                        <div class="user-info">
-                            <div class="user-details">
-                                <div>
-                                <strong>CI:</strong>
-                                <p class="user-ci"> </p>
-                                <strong>Nombre:</strong>
-                                <p class="user-name"> </p>
-                                <strong>Apellido:</strong>
-                                <p class="user-surname"> </p>
-                                <strong>Correo:</strong>
-                                <p class="user-email"> </p>
-                                <strong>Telefono:</strong>
-                                <p class="user-phone"> </p>
-                                <strong>Direccion:</strong>
-                                <p class="user-address"> </p>
-                                     </div>
-                                 <div class="user-information">
-                                <strong>Rol:</strong>
-                                <p class="user-role"> </p>
-                                <strong>Estado pago:</strong>
-                                <p class="user-payment-status"> </p>
-                            </div>
-                            </div>
-                           
-                        </div>
-
-                        <div class="user-actions">
-                            <button class="edit-button actBut" id="editButton">
-                                <i class="fas fa-edit"></i>
-                                Editar
-                            </button>
-                            <div class="spinner" id="loadingSpinner"></div>
-                        </div>
-                    </div>
+    <div class="profile-container">
+        <div class="profile-main-content">
+            <div class="profile-sidebar">
+                <img id="profileImage" src="../../../back/user_images/default/default-avatar.svg" alt="Foto de perfil" class="profile-image">
+                
+                <div class="user-basic-info">
+                    <h3 class="user-name"></h3>
+                    <span class="user-role"></span>
                 </div>
-                <div id="overlay"></div>
-                <div class="edit-actions">
-                    <h2><i class="fas fa-user-edit"></i> Editar Información</h2>
-                    <label for="ci"><i class="fas fa-id-card"></i> CI:</label>
-                    <input type="text" class="edit-input" name="ci">
-                    <label for="name"><i class="fas fa-user"></i> Nombre:</label>
-                    <input type="text" class="edit-input" name="name">
-                    <label for="surname"><i class="fas fa-user"></i> Apellido:</label>
-                    <input type="text" class="edit-input" name="surname">
-                    <label for="email"><i class="fas fa-envelope"></i> Correo:</label>
-                    <input type="text" class="edit-input" name="email">
-                    <label for="phone"><i class="fas fa-phone"></i> Telefono:</label>
-                    <input type="text" class="edit-input" name="phone">
-                    <label for="address"><i class="fas fa-map-marker-alt"></i> Direccion:</label>
-                    <input type="text" class="edit-input" name="address">
-                    <div class="edit-buttons">
-                        <button class="save-button actBut">
-                            <i class="fas fa-save"></i>
-                            Guardar
-                        </button>
-                        <button class="cancel-button actBut">
-                            <i class="fas fa-times"></i>
-                            Cancelar
-                        </button>
-                    </div>
 
+                <div class="user-actions">
+                    <button class="edit-button actBut" id="editButton">
+                        <i class="fas fa-edit"></i>
+                        Editar Información
+                    </button>
+                   
                 </div>
             </div>
-        </main>
+
+            <div class="profile-content">
+                <div class="profile-header">
+                    <h2>Información Personal</h2>
+                    <p>Detalles de tu cuenta de Socio</p>
+                </div>
+
+                <div class="user-details">
+                    <div class="user-detail-group">
+                        <strong>Cédula de Identidad:</strong>
+                        <p class="user-ci"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Apellido:</strong>
+                        <p class="user-surname"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Correo Electrónico:</strong>
+                        <p class="user-email"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Teléfono:</strong>
+                        <p class="user-phone"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Dirección:</strong>
+                        <p class="user-address"></p>
+                    </div>
+
+                    <div class="user-information">
+                        <div class="payment-status-container">
+                            <strong>Estado de Pago:</strong>
+                            <p class="user-payment-status"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-picture-section">
+            <h2><i class="fas fa-camera"></i> Cambiar Foto de Perfil</h2>
+            <form id="uploadForm" enctype="multipart/form-data" class="upload-form-container">
+                <input type="file" name="profile_image" id="profile_image" accept="image/*" required>
+                <button type="submit" class="upload-button actBut">
+                    <i class="fas fa-upload"></i> Subir Nueva Foto
+                </button>
+            </form>
+                <h2 class="edition-status"></h2>
+                 <div class="spinner" id="loadingSpinner"></div>
+        </div>
     </div>
 
-    <script src="js/profile.js"></script>
+    <div id="overlay"></div>
+    <div class="edit-actions">
+        <h2><i class="fas fa-user-edit"></i> Editar Información</h2>
+        <label for="ci"> <i class="fas fa-id-card"></i> CI:</label>
+        <input type="text" class="edit-input" name="ci" disabled>
+        <label for="name"><i class="fas fa-user"></i> Nombre:</label>
+        <input type="text" class="edit-input" name="name">
+        <label for="surname"><i class="fas fa-user"></i> Apellido:</label>
+        <input type="text" class="edit-input" name="surname">
+        <label for="email"><i class="fas fa-envelope" ></i> Correo:</label>
+        <input type="text" class="edit-input" name="email" disabled>
+        <label for="phone"><i class="fas fa-phone" ></i> Telefono:</label>
+        <input type="text" class="edit-input" name="phone">
+        <label for="address"><i class="fas fa-map-marker-alt"></i> Direccion:</label>
+        <input type="text" class="edit-input" name="address">
+        <div class="edit-buttons">
+            <button class="save-button actBut">
+                <i class="fas fa-save"></i>
+                Guardar
+            </button>
+            <button class="cancel-button actBut">
+                <i class="fas fa-times"></i>
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+        </main>
+    </div>
+    <script src="../js/headerProfilePic.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

@@ -1,12 +1,14 @@
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -29,16 +31,19 @@ body {
 .login-header {
   text-align: center;
   padding: 40px 30px 30px;
-  background: linear-gradient(135deg, #95a8fa 0%, #c78fff 100%);
+  background: #667eea;
+
   color: white;
 }
 .register-group {
    font-size: 1rem;
   text-align: center;
   padding: 40px 30px 30px;
-  background: linear-gradient(135deg, #546edf 0%, #7e4fad 100%);
+  background: #667eea;
   color: white;
-}
+  min-height: 200px;
+     height: 100%;
+}   
 
 .register-group a {
     text-decoration: none;
@@ -46,12 +51,18 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+ 
 }
 .register-group a:hover {
     color: rgb(240, 138, 138);
+ 
    
 }
-
+.register-group div{
+  margin-bottom: 20px;
+  
+    
+}
 .register-group a::after {
     content: '';
     position: absolute;
@@ -72,6 +83,7 @@ body {
   height: 80px;
   border-radius: 50%;
   margin-bottom: 20px;
+  background: #fffffff8;
   border: 3px solid white;
 }
 
@@ -119,7 +131,7 @@ body {
 .login-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #546bd1 100%);
   color: white;
   border: none;
   border-radius: 5px;
@@ -132,7 +144,9 @@ body {
 .login-btn:hover {
   transform: translateY(-2px);
 }
-
+.login-btn:active {
+  transform: translateY(0px);
+}
 .login-footer {
   text-align: center;
   padding: 20px 30px;
@@ -163,4 +177,3 @@ body {
   }
 }
 
-/* dashboard styles */

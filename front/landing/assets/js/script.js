@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
       navbar.classList.remove('scrolled');
     }
   });
-
+  // scroll smooth para las etiquetas <a>
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -93,64 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
     card.style.animationDelay = `${index * 1}s`;
   });
 
-  const stats = document.querySelectorAll('.stat-number');
-  const animateCounter = (element, target) => {
-    let current = 0;
-    const increment = target / 100;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      if (target === 100) {
-        element.textContent = Math.floor(current) + '%';
-      } else {
-        element.textContent = Math.floor(current) + (target >= 500 ? '+' : '');
-      }
-    }, 20);
-  };
-
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const statNumber = entry.target;
-        const text = statNumber.textContent;
-        let target = parseInt(text.replace(/\D/g, ''));
-
-        if (text.includes('%')) {
-          target = 100;
-        } else if (text.includes('+')) {
-          target = parseInt(text.replace('+', ''));
-        }
-
-        animateCounter(statNumber, target);
-        statsObserver.unobserve(statNumber);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  stats.forEach(stat => {
-    statsObserver.observe(stat);
-  });
-
-  let currentTestimonial = 0;
-  const testimonials = document.querySelectorAll('.testimonial-card');
-  function showTestimonial(index) {
-    testimonials.forEach((testimonial, i) => {
-      testimonial.style.opacity = i === index ? '1' : '0.7';
-      testimonial.style.transform = i === index ? 'scale(1)' : 'scale(0.95)';
-    });
-  }
-
-  if (testimonials.length > 0) {
-    showTestimonial(0);
-    setInterval(() => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      showTestimonial(currentTestimonial);
-    }, 5000);
-  }
-
+  // Parallax para el hgero
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
@@ -165,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const inputs = document.querySelectorAll('input, select, textarea');
   inputs.forEach(input => {
-    input.addEventListener('blur', validateField);
+    input.addEventListener('input', validateField);
     input.addEventListener('input', clearError);
   });
 
@@ -225,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.body.classList.add('loading');
 });
 
-// Scroll a la seccion seleccionada
+// Scroll a la seccion seleccionada pero smooth
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
   if (section) {

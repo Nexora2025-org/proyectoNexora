@@ -43,13 +43,25 @@ body {
   color: #333;
   
 }
+.profilePic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 .usr-link {
     text-decoration: none;
     color: #333;
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    display: flex;
     cursor: pointer;
+}
+#userName {
+
+    margin-top: 5px;
+    margin-right: 5px;
 }
 .usr-link:hover {
     color: #4d4545;

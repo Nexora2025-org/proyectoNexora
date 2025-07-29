@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Citas Agendadas | Covinova</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>Panel de Control para administrador</h3>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="agenda.html"><i class="fas fa-home"></i> Agenda de Citas</a></li>
+        <li><a href="#"><i class="fas fa-users"></i> Gestión de Socios</a></li>
+        <li><a href="addSocio.html"><i class="fas fa-dollar-sign"></i> Agregar Socio</a></li>
+        <li><a href="#"><i class="fas fa-calendar-alt"></i> Jornadas de Trabajo</a></li>
+        <li><a href="#"><i class="fas fa-home"></i> Asignación de Viviendas</a></li>
+        <li><a href="#"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+        <li><a href="#"><i class="fas fa-bullhorn"></i> Comunicaciones</a></li>
+        <li><a href="profile.html"><i class="fas fa-user-circle"></i> Perfil</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <header class="top-header">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1>Citas Agendadas</h1>
+         <img src="../assets/logoCooperativa.png" alt="Logo" class="sidebar-logo" />
+        <div class="user-info">
+          <div class="usr-link">
+            <span id="userName">Usuario</span>
+            <img src="../../../back/user_images/default/default-avatar.svg" class="profilePic" alt="Foto de perfil"/>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="page-controls">
+      
+          <div class="search-box">
+            <input type="text" placeholder="Buscar cita..." id="searchInput" />
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>C.I</th>
+                <th>Correo</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono</th>
+                <th>Fecha Nac.</th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th>Evaluar</th>
+              </tr>
+            </thead>
+            <tbody id="citasTableBody">
+        
+         
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/headerProfileInfo.js"></script>
+  <script  src="../js/agenda.js">
+    
+  </script>
+</body>
+</html>

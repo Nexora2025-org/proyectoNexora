@@ -21,7 +21,7 @@ window.onload = function () {
               const horaSQL = cita.toTimeString().slice(0, 8); 
               const clave = `${fechaSQL} ${horaSQL}`;
               
-              console.log(clave);
+       
               if (!fechasOcupadas.includes(clave)) {
                 const horaVisible = horaSQL.slice(0,5); 
                 const label = `${fechaSQL} - ${horaVisible}`;
@@ -30,7 +30,7 @@ window.onload = function () {
                 option.textContent = label;
                 appointmentSelect.appendChild(option);
               }else{
-                console.log("cita ocupada");
+             
                  const horaVisible = horaSQL.slice(0,5); 
                 const label = `${fechaSQL} - ${horaVisible} (CITA OCUPADA)`;
                 const option = document.createElement("option");
@@ -54,8 +54,72 @@ window.onload = function () {
 };
 appointmentSelect.addEventListener('input', () => {
   const selectedValue = appointmentSelect.value;
-  console.log(selectedValue);
   if(selectedValue.includes("OCUPADA")){
     alert("Cita ocupada");
   }
+});
+document.getElementById('contact-form').addEventListener('submit', event => {
+  event.preventDefault();
+
+const ciInput = document.getElementById('CI');
+const nameInput = document.getElementById('name');
+const surnameInput = document.getElementById('surname');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+const birthdateInput = document.getElementById('birthdate');
+const appointmentInput = document.getElementById('appointment');
+
+const data = {
+  CI: ciInput.value,
+  nombre: nameInput.value,
+  apellido: surnameInput.value,
+  email: emailInput.value,
+  telefono: phoneInput.value,
+  fecha_nacimiento: birthdateInput.value,
+  fecha_agendada: new Date().toISOString().split('T')[0],
+  hora: appointmentInput.value
+};
+
+  fetch('http://localhost/Cooperativa/back/API/api.php/Setappointment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+         Swal.fire({
+          title: 'Cita agendada',
+           text: 'Tu cita ha sido agendada',
+          icon: 'success',
+         confirmButtonText: 'Cerrar'
+         })
+   
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo agendar la cita',
+          icon: 'error',
+          confirmButtonText: 'Cerrar'
+        })
+        console.error(result);
+      }
+    })
+    .catch(error => {
+         Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error con tu solicitud',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+    });
+    ciInput.value = '';
+nameInput.value = '';
+surnameInput.value = '';
+emailInput.value = '';
+phoneInput.value = '';
+birthdateInput.value = '';
+appointmentInput.value = '';
 });

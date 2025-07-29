@@ -11,44 +11,81 @@ $endpoint = $_SERVER['PATH_INFO'];
 header('Content-Type: application/json');
 
 switch ($method) {
+    //GET
     case 'GET':
+        
         if($endpoint === '/usuarios'){
-            // Obtiene todos los usuarios
             $usuarios = $usuarioObj->getAllUsuarios();
-             json_encode($usuarios);
+            echo json_encode($usuarios);
         } elseif (preg_match('/^\/usuarios\/(\d+)$/', $endpoint, $matches)) {
-            // Obtiene un usuario por ID
             $usuarioId = $matches[1];
             $usuario = $usuarioObj->getUsuarioById($usuarioId);
-             json_encode($usuario);
+             echo json_encode($usuario);
         }
    
         if($endpoint === '/agendas') {
             $data = json_decode(file_get_contents('php://input'), true);
             $result = $agendaObj->getAppointments();
-            if ($result) {
+            if ($result>=0) {
                 echo json_encode(['success' => true, 'agendas' => $result]);
             } else {
-                echo json_encode(['success' => false]);
+                echo json_encode(['success' => false, 'error' => $result]);
             }
         }
-        break;
+     break;
+    //POST
     case 'POST':
-            if($endpoint === '/login') {
+        if($endpoint === '/login') {
             $data = json_decode(file_get_contents('php://input'), true);
             $result = $usuarioObj->getUserByID($data['usr_ci']);
             
             if ($result) {
-                if(md5($data['usr_pass']) === $result['contraseña']){
+                if(password_verify($data['usr_pass'], $result['contraseña'])){
                     echo json_encode(['success' => true, 'user' => $result]);
                 } else {
                     echo json_encode(['success' => false, 'error' => 'Contraseña incorrecta']);
                 }
             } else {
-                 json_encode(['success' => false, 'error' => 'Hubo un error con tu solicitud']);
+                echo json_encode(['success' => false, 'error' => 'Hubo un error con tu solicitud']);
             }
+                    exit;
         }
-        break;
+        if($endpoint === '/uploadImage') {
+            require_once './functions/uploadImage.php';
+                    exit;
+        }
+        if($endpoint === '/Setappointment'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $agendaObj->setAppointments($data);
+            if ($result) {
+                echo json_encode(['success' => true , 'agenda' => $result]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+            exit;
+        }
+        if($endpoint === '/addUsuario') {
+           try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $usuarioObj->addUser($data);
+
+     if ($result) {
+        echo json_encode(['success' => true,'message' => $result]);
+    } else {
+        echo json_encode(['success' => false, 'message' => $result]);
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error interno del servidor.',
+        'error' => $e->getMessage()
+    ]);
+}
+        exit;
+        }
+    break;
+    //PUT
     case 'PUT':
         if ($endpoint === '/actualizarInfo') {
         $data = json_decode(file_get_contents('php://input'), true);
@@ -64,9 +101,32 @@ switch ($method) {
             echo json_encode(['success' => false]);
         }
     }
+        if($endpoint === '/actualizarAgenda') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $agendaObj->updateAgenda($data);
+            if ($result) {
+                $updatedAgenda = $agendaObj->getAppointmentsByCI($data['CI']);
+                echo json_encode(['success' => true, 'agenda' => $updatedAgenda]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        }
         break;
+
+    //DELETE
     case 'DELETE':
-        // Procesa la solicitud DELETE
+       if (preg_match('/^\/agendas\/(\d+)$/', $endpoint, $matches)) {
+        $agendaCI = $matches[1];
+
+        // Asegúrate de que tengas este método en tu clase Agenda
+        $result = $agendaObj->deleteAppointment($agendaCI);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'No se pudo eliminar la agenda.']);
+        }
+    }
         break;
     default:
         // Maneja otras solicitudes
