@@ -1,0 +1,558 @@
+.profile-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  animation: profileFadeIn 0.8s ease-out;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+@keyframes profileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  animation: profileImageScale 0.6s ease-out 0.2s both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 4px solid #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+@keyframes profileImageScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover img {
+  transform: scale(1.1);
+}
+
+
+.user-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.user-detail-group {
+  min-width: fit-content;
+}
+.user-details strong {
+  color: #374151;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.user-details p {
+  margin: 0 0 1rem 0;
+  min-height: 45px;
+  font-weight: 500;
+  background: #f9fafb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 12px;
+  transition: all 0.3s ease;
+  animation: profileDataSlide 0.6s ease-out both;
+  border-left: 4px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.user-details p:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-left-color: #667eea;
+  background: white;
+}
+
+.user-detail-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-information {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.payment-status-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-payment-status {
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-size: 0.875rem !important;
+  border: none !important;
+  min-height: auto !important;
+}
+
+
+@keyframes profileDataSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.edit-button:hover {
+  background: #5a67d8;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+
+.edit-actions {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  background: white;
+  border-radius: 15px;
+  text-align: center;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translate(-50%, -50%) scale(0.7);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.edit-actions::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.show-edit-actions {
+  width: 50%;
+  opacity: 1;
+  background: #47474750;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  padding: 30px;
+}
+
+/* Animaciones para los elementos del modal */
+.edit-actions h2 {
+  margin-bottom: 25px;
+  color: #ffffff;
+  font-size: 24px;
+  animation: profileModalTitleSlide 0.5s ease-out 0.2s both;
+}
+
+.edit-actions label {
+  z-index: 1;
+  font-weight: bold;
+  text-align: start;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #2c3e50;
+  font-size: 14px;
+  animation: profileModalLabelSlide 0.4s ease-out calc(var(--modal-delay, 0) * 0.05s) both;
+}
+
+.edit-actions input {
+  margin: 0px 0 15px 0;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: start;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+  animation: profileModalInputSlide 0.4s ease-out calc(var(--modal-delay, 0) * 0.05s + 0.1s) both;
+}
+
+.edit-actions input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 5px 7px rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  animation: profileModalButtonSlide 0.5s ease-out 0.8s both;
+}
+
+
+.actBut {
+  margin: 10px 5px;
+  font-weight: bold;
+  text-align: center;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  animation: profileModalButtonSlide 0.5s ease-out 0.8s both;
+}
+
+.actBut::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.save-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cancel-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.save-button:hover {
+  background: #5a67d8;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.cancel-button:hover {
+  background: #9395a3;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(119, 121, 129, 0.4);
+}
+
+.cancel-button {
+  background: #95a5a6 !important;
+}
+
+.cancel-button:hover {
+  background: #7f8c8d !important;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: none;
+}
+
+.profile-picture-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: profileFadeIn 0.8s ease-out 0.4s both;
+}
+
+.profile-picture-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.upload-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#profile_image {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px dashed #667eea;
+  border-radius: 12px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+#profile_image:hover {
+  border-color: #5a67d8;
+  background: #e8f0fe;
+  transform: translateY(-2px);
+}
+
+.upload-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin-top: 1rem;
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6a4190 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Spinner para carga, todavia no funciona :O */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #667eea;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-main-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  transition: all 0.4s ease;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid #e5e7eb;
+  padding-right: 2rem;
+}
+
+.profile-content {
+  flex: 1;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile-header h2 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-header p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.user-basic-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.user-basic-info h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-basic-info .user-role {
+  background: #596dc9;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+.user-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+@media (max-width: 1400px) {
+    .user-details {
+    grid-template-columns: 1fr;
+  }
+    .profile-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1180px) {
+  .profile-main-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .profile-main-content {
+    min-width: 100%;
+    padding: 5dvw;
+      margin: auto;
+  }
+  .profile-content {
+    width: 100%;
+  }
+  .profile-sidebar {
+    border-right: none;
+    margin: auto;
+    border-bottom: 1px solid #e5e7eb;
+    padding-right: 0;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+  .user-information {
+    grid-template-columns: 1fr;
+  }
+  .profile-header{
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  .profile-main-content {
+    padding: 1.5rem;
+  }
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .user-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sidebar-menu{
+    overflow-y: scroll;
+  }
+  .actBut {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-main-content {
+    padding: 1rem;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .user-details p {
+    min-height: 40px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+}

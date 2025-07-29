@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agregar/Editar Socio | Covinova</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>Panel de Control para administrador</h3>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="agenda.html"><i class="fas fa-home"></i> Agenda de Citas</a></li>
+        <li><a href="#"><i class="fas fa-users"></i> Gestión de Socios</a></li>
+        <li><a href="addSocio.html"><i class="fas fa-dollar-sign"></i> Agregar Socio</a></li>
+        <li><a href="#"><i class="fas fa-calendar-alt"></i> Jornadas de Trabajo</a></li>
+        <li><a href="#"><i class="fas fa-home"></i> Asignación de Viviendas</a></li>
+        <li><a href="#"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+        <li><a href="#"><i class="fas fa-bullhorn"></i> Comunicaciones</a></li>
+        <li><a href="profile.html"><i class="fas fa-user-circle"></i> Perfil</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <header class="top-header">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1>Agregar/Editar Socio</h1>
+        <img src="../assets/logoCooperativa.png" alt="Logo" class="sidebar-logo" />
+        <div class="user-info">
+          <div class="usr-link">
+            <span id="userName">Usuario</span>
+            <img src="../../../back/user_images/default/default-avatar.svg" class="profilePic" alt="Foto de perfil" />
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+          <h2><i class="fas fa-user-edit"></i> Información del Socio</h2>
+        <div class="edit-actions">
+          
+          <div>
+            <label for="ci"> <i class="fas fa-id-card"></i> CI:</label>
+            <input type="text" class="edit-input" id="ci" name="ci" disabled>
+          </div>
+          <div>
+            <label for="name"><i class="fas fa-user"></i> Nombre:</label>
+            <input type="text" class="edit-input" id="name" name="name">
+          </div>
+          <div>
+            <label for="surname"><i class="fas fa-user"></i> Apellido:</label>
+            <input type="text" class="edit-input" id="surname" name="surname">
+          </div>
+          <div>
+            <label for="email"><i class="fas fa-envelope"></i> Correo:</label>
+            <input type="text" class="edit-input" id="email" name="email">
+          </div>
+          <div>
+            <label for="phone"><i class="fas fa-phone"></i> Telefono:</label>
+            <input type="text" class="edit-input" id="phone" name="phone">
+          </div>
+          <div>
+            <label for="address"><i class="fas fa-map-marker-alt"></i> Direccion:</label>
+            <input type="text" class="edit-input" id="address" name="address">
+          </div>
+          <div class="currency-input">
+            <label for="mensualidadText">Cuota Mensual en Pesos:</label>
+            <div>
+              <input type="number" class="edit-input" min="0" id="mensualidad" name="mensualidad" step="1" required>
+            </div>
+          </div>
+         
+        </div>
+         <div class="edit-buttons">
+            <button class="save-button actBut" id="addSocioBtn">
+              <i class="fas fa-save"></i>
+              Agregar Socio
+            </button>
+            <button class="cancel-button actBut" id="deleteAgendaBtn">
+              <i class="fas fa-times"></i>
+              Eliminar Cita
+            </button>
+            <button class="cancel-button actBut" id="cancelBtn">
+              <i class="fas fa-times"></i>
+              Cancelar
+            </button>
+          </div>
+      </div>
+  </div>
+  </main>
+  </div>
+
+  <script src="../js/headerProfileInfo.js"></script>
+
+  <script src="../js/addSocios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>

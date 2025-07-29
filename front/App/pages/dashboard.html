@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Covinova</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+      
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+               <img src="../assets/logoCooperativa.png" alt="Logo" class="sidebar-logo">
+                <h3>Panel de Control</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Gestión de Socios</a></li>
+                <li><a href="#"><i class="fas fa-dollar-sign"></i> Gestión Financiera</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Jornadas de Trabajo</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Asignación de Viviendas</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+                <li><a href="#"><i class="fas fa-bullhorn"></i> Comunicaciones</a></li>
+                   <li><a href="profile.html"><i class="fas fa-user-circle"></i> Perfil</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </nav>
+        
+  
+        <main class="main-content">
+           <header class="top-header">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <a href="./profile.html" class="usr-link">
+                        <span id="userName"></span>
+                        <img src="../../../back/user_images/default/default-avatar.svg" class="profilePic" alt=" Foto de perfil">
+                    </a>
+                </div>
+            </header>
+            
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalSocios">0</h3>
+                            <p>Total Socios</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalRecaudado">$10</h3>
+                            <p>Recaudado este mes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="jornadasMes">0</h3>
+                            <p>Jornadas este mes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="viviendasAsignadas">0</h3>
+                            <p>Viviendas Asignadas</p>
+                        </div>
+                    </div>
+                </div>
+                
+             
+                <div class="dashboard-sections">
+                    <div class="section">
+                        <h2>Actividad Reciente</h2>
+                        <div class="activity-list" id="activityList">
+                         
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <h2>Próximas Jornadas</h2>
+                        <div class="upcoming-events" id="upcomingEvents">
+                          
+                        </div>
+                    </div>
+                </div>
+                
+               
+                <div class="quick-actions">
+                    <h2>Acciones Rápidas</h2>
+                    <div class="actions-grid">
+                        <button class="action-btn">
+                            <i class="fas fa-receipt"></i>
+                            Registrar Pago
+                        </button>
+                        <button class="action-btn" >
+                            <i class="fas fa-calendar-plus"></i>
+                            Nueva Jornada
+                        </button>
+                        <button class="action-btn" >
+                            <i class="fas fa-bullhorn"></i>
+                            Nuevo Anuncio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/headerProfilePic.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

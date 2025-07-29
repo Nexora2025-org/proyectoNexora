@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Covinova</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/profile-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../../App/assets/logoCooperativa.png" alt="Logo" class="sidebar-logo">
+                <h3>Tu Perfil</h3>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Gestión de Socios</a></li>
+                <li><a href="#"><i class="fas fa-dollar-sign"></i> Gestión Financiera</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Jornadas de Trabajo</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Asignación de Viviendas</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+                <li><a href="#"><i class="fas fa-bullhorn"></i> Comunicaciones</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user-circle"></i> Perfil</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-header">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <a href="./profile.html" class="usr-link">
+                        <span id="userName"></span>
+                        <img src="../../../back/user_images/default/default-avatar.svg" class="profilePic" alt=" Foto de perfil">
+                    </a>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+
+
+    <div class="profile-container">
+        <div class="profile-main-content">
+            <div class="profile-sidebar">
+                <img id="profileImage" src="../../../back/user_images/default/default-avatar.svg" alt="Foto de perfil" class="profile-image">
+                
+                <div class="user-basic-info">
+                    <h3 class="user-name"></h3>
+                    <span class="user-role"></span>
+                </div>
+
+                <div class="user-actions">
+                    <button class="edit-button actBut" id="editButton">
+                        <i class="fas fa-edit"></i>
+                        Editar Información
+                    </button>
+                   
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-header">
+                    <h2>Información Personal</h2>
+                    <p>Detalles de tu cuenta de Socio</p>
+                </div>
+
+                <div class="user-details">
+                    <div class="user-detail-group">
+                        <strong>Cédula de Identidad:</strong>
+                        <p class="user-ci"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Apellido:</strong>
+                        <p class="user-surname"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Correo Electrónico:</strong>
+                        <p class="user-email"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Teléfono:</strong>
+                        <p class="user-phone"></p>
+                    </div>
+                    
+                    <div class="user-detail-group">
+                        <strong>Dirección:</strong>
+                        <p class="user-address"></p>
+                    </div>
+
+                    <div class="user-information">
+                        <div class="payment-status-container">
+                            <strong>Estado de Pago:</strong>
+                            <p class="user-payment-status"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-picture-section">
+            <h2><i class="fas fa-camera"></i> Cambiar Foto de Perfil</h2>
+            <form id="uploadForm" enctype="multipart/form-data" class="upload-form-container">
+                <input type="file" name="profile_image" id="profile_image" accept="image/*" required>
+                <button type="submit" class="upload-button actBut">
+                    <i class="fas fa-upload"></i> Subir Nueva Foto
+                </button>
+            </form>
+                <h2 class="edition-status"></h2>
+                 <div class="spinner" id="loadingSpinner"></div>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+    <div class="edit-actions">
+        <h2><i class="fas fa-user-edit"></i> Editar Información</h2>
+        <label for="ci"> <i class="fas fa-id-card"></i> CI:</label>
+        <input type="text" class="edit-input" name="ci" disabled>
+        <label for="name"><i class="fas fa-user"></i> Nombre:</label>
+        <input type="text" class="edit-input" name="name">
+        <label for="surname"><i class="fas fa-user"></i> Apellido:</label>
+        <input type="text" class="edit-input" name="surname">
+        <label for="email"><i class="fas fa-envelope" ></i> Correo:</label>
+        <input type="text" class="edit-input" name="email" disabled>
+        <label for="phone"><i class="fas fa-phone" ></i> Telefono:</label>
+        <input type="text" class="edit-input" name="phone">
+        <label for="address"><i class="fas fa-map-marker-alt"></i> Direccion:</label>
+        <input type="text" class="edit-input" name="address">
+        <div class="edit-buttons">
+            <button class="save-button actBut">
+                <i class="fas fa-save"></i>
+                Guardar
+            </button>
+            <button class="cancel-button actBut">
+                <i class="fas fa-times"></i>
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+        </main>
+    </div>
+    <script src="../js/headerProfilePic.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
