@@ -56,8 +56,7 @@ async function validateLogin(ci, password) {
       'presidente',
       'secretario'
     ]
-
-     return adminRoles.includes(data.user.rol) ? data.user : false;
+     return adminRoles.includes(data.user.rol.toLowerCase()) ? data.user : false;
   } catch (error) {
     console.error("Error al validar login:", error);
     return false;
